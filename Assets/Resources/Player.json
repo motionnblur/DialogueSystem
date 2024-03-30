@@ -2,7 +2,11 @@
   "player": [
     {
       "id": "intro",
-      "text": "Welcome, brave adventurer! Your journey begins now.",
+      "texts": [
+        "Welcome, brave adventurer!",
+        "Your journey begins now...",
+        "Are you ready ?"
+      ],
       "options": [
         {
           "text": "Tell me about this world.",
@@ -26,7 +30,10 @@
     },
     {
       "id": "continueExploring",
-      "text": "As you explore, you'll encounter mystical forests, treacherous mountains, and forgotten temples. Be wary of the shadows; they hold secrets and dangers.",
+      "texts": [
+        "As you explore, you'll encounter mystical forests, treacherous mountains",
+        "and forgotten temples. Be wary of the shadows; they hold secrets and dangers."
+      ],
       "options": [
         {
           "text": "Ask about quests.",

@@ -31,7 +31,7 @@ public class DialogueData
 public class DialogueNode
 {
     public string id;
-    public string text;
+    public string[] texts;
     public DialogueOption[] options;
 }
 [System.Serializable]

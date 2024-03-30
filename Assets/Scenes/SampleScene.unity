@@ -323,10 +323,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c24c6f222fd154eb963a0cd73a8f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1584493041}
+  textArea: {fileID: 1584493041}
   dialogueFileName: {fileID: 4900000, guid: 3169eb4dac6990148b4f59b12bcdd01a, type: 3}
-  fullText: hello my friend !
-  letterDelay: 0.02
+  letterDelay: 0.03
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

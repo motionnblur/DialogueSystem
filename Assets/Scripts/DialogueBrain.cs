@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueBrain : MonoBehaviour
 {
     Queue<IEnumerator> coroutines = new Queue<IEnumerator>();
-    [SerializeField] UnityEngine.UI.Text text;
+    [SerializeField] UnityEngine.UI.Text textArea;
     [SerializeField] private TextAsset dialogueFileName;
     public float letterDelay = 0.2f; // Delay between displaying words
     private int letterIndex = 0;
@@ -38,20 +38,26 @@ public class DialogueBrain : MonoBehaviour
         {
             yield return StartCoroutine(coroutines.Dequeue());
             yield return new WaitForSeconds(1f);
-            text.text = "";
+            textArea.text = "";
             letterIndex = 0;
         }
     }
     private IEnumerator DisplayLetters(DialogueNode _introNode)
     {
-        while (letterIndex < _introNode.text.Length)
-        {
-            char currentLetter = _introNode.text[letterIndex];
-            text.text += currentLetter;
+        foreach (string text in _introNode.texts){
+            while (letterIndex < text.Length)
+            {
+                char currentLetter = text[letterIndex];
+                textArea.text += currentLetter;
 
-            yield return new WaitForSeconds(letterDelay);
+                yield return new WaitForSeconds(letterDelay);
 
-            letterIndex++;
+                letterIndex++;
+            }
+            yield return new WaitForSeconds(0.8f);
+
+            letterIndex = 0;
+            textArea.text = "";
         }
     }
 }
