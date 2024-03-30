@@ -1,14 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueBrain : MonoBehaviour
 {
+    Queue<IEnumerator> coroutines = new Queue<IEnumerator>();
     [SerializeField] UnityEngine.UI.Text text;
     [SerializeField] private TextAsset dialogueFileName;
     public float letterDelay = 0.2f; // Delay between displaying words
     private int letterIndex = 0;
     private DialogueBase dialogueBase;
-    private DialogueNode introNode;
     
     private void Awake()
     {
@@ -21,13 +22,9 @@ public class DialogueBrain : MonoBehaviour
         TextAsset jsonFile = dialogueFileName;
         if (jsonFile != null)
         {
-            introNode = dialogueBase.FindNodeById("intro");
-            string introText = introNode.text;
-            if(introNode != null)
-            {
-                Debug.Log("Intro text: " + introText);
-                StartCoroutine(DisplayLetters());
-            }
+            coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById("intro")));
+            coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById("continueExploring")));
+            StartCoroutine(RunCoroutines());
         }
         else
         {
@@ -35,11 +32,21 @@ public class DialogueBrain : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayLetters()
+    private IEnumerator RunCoroutines()
     {
-        while (letterIndex < introNode.text.Length)
+        while (coroutines.Count > 0)
         {
-            char currentLetter = introNode.text[letterIndex];
+            yield return StartCoroutine(coroutines.Dequeue());
+            yield return new WaitForSeconds(1f);
+            text.text = "";
+            letterIndex = 0;
+        }
+    }
+    private IEnumerator DisplayLetters(DialogueNode _introNode)
+    {
+        while (letterIndex < _introNode.text.Length)
+        {
+            char currentLetter = _introNode.text[letterIndex];
             text.text += currentLetter;
 
             yield return new WaitForSeconds(letterDelay);
