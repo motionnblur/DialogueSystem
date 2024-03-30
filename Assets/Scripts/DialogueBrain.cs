@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueBrain : MonoBehaviour
 {
-    Queue<IEnumerator> coroutines = new Queue<IEnumerator>();
+    [SerializeField] GameObject dialogueBox;
+    [SerializeField] Button[] dialogButtons;
     [SerializeField] UnityEngine.UI.Text textArea;
     [SerializeField] private TextAsset dialogueFileName;
     public float letterDelay = 0.2f; // Delay between displaying words
     private int letterIndex = 0;
+    private Queue<IEnumerator> coroutines = new Queue<IEnumerator>();
     private DialogueBase dialogueBase;
+    private DialogueNode currentIntroNode;
     
     private void Awake()
     {
@@ -23,7 +27,7 @@ public class DialogueBrain : MonoBehaviour
         if (jsonFile != null)
         {
             coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById("intro")));
-            coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById("continueExploring")));
+            //coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById("continueExploring")));
             StartCoroutine(RunCoroutines());
         }
         else
@@ -44,6 +48,7 @@ public class DialogueBrain : MonoBehaviour
     }
     private IEnumerator DisplayLetters(DialogueNode _introNode)
     {
+        currentIntroNode = _introNode;
         foreach (string text in _introNode.texts){
             while (letterIndex < text.Length)
             {
@@ -59,5 +64,24 @@ public class DialogueBrain : MonoBehaviour
             letterIndex = 0;
             textArea.text = "";
         }
+        int optionCount = _introNode.options.Length;
+        if(optionCount > 0){
+            dialogueBox.SetActive(true);
+            for(int i = 0; i < optionCount; i++){
+                dialogButtons[i].gameObject.SetActive(true);
+                dialogButtons[i].GetComponentInChildren<Text>().text = _introNode.options[i].text;
+            }
+        }
+    }
+
+    public void DialogA(){
+        coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById(currentIntroNode.options[0].nextNode)));
+        StartCoroutine(RunCoroutines());
+        dialogueBox.SetActive(false);
+    }
+    public void DialogB(){
+        coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById(currentIntroNode.options[1].nextNode)));
+        StartCoroutine(RunCoroutines());
+        dialogueBox.SetActive(false);
     }
 }
