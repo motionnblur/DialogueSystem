@@ -1,0 +1,66 @@
+{
+  "player": [
+    {
+      "id": "intro",
+      "text": "Welcome, brave adventurer! Your journey begins now.",
+      "options": [
+        {
+          "text": "Tell me about this world.",
+          "nextNode": "worldInfo"
+        },
+        {
+          "text": "What's my quest?",
+          "nextNode": "questStart"
+        }
+      ]
+    },
+    {
+      "id": "worldInfo",
+      "text": "Our world, known as Eldoria, is filled with magic, mythical creatures, and ancient ruins. The balance between light and darkness hangs by a thread.",
+      "options": [
+        {
+          "text": "Continue...",
+          "nextNode": "continueExploring"
+        }
+      ]
+    },
+    {
+      "id": "continueExploring",
+      "text": "As you explore, you'll encounter mystical forests, treacherous mountains, and forgotten temples. Be wary of the shadows; they hold secrets and dangers.",
+      "options": [
+        {
+          "text": "Ask about quests.",
+          "nextNode": "questStart"
+        },
+        {
+          "text": "Ready to begin your adventure?",
+          "nextNode": "questStart"
+        }
+      ]
+    },
+    {
+      "id": "questStart",
+      "text": "Your quest awaits! Seek the ancient artifact known as the **Crystal Shard**. It holds the power to restore balance or plunge our world into chaos.",
+      "options": [
+        {
+          "text": "Accept the quest",
+          "nextNode": "questAccepted"
+        },
+        {
+          "text": "Decline and explore further",
+          "nextNode": "exploreMore"
+        }
+      ]
+    },
+    {
+      "id": "questAccepted",
+      "text": "May the gods guide you, hero. Your destiny awaits!",
+      "options": []
+    },
+    {
+      "id": "exploreMore",
+      "text": "Very well. Remember, every choice shapes your path. Good luck!",
+      "options": []
+    }
+  ]
+}
