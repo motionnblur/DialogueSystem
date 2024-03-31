@@ -5,7 +5,7 @@
       "texts": [
         "Welcome, brave adventurer!",
         "Your journey begins now...",
-        "Are you ready ?"
+        "Are you ready?"
       ],
       "options": [
         {
@@ -15,6 +15,14 @@
         {
           "text": "What's my quest?",
           "nextNode": "questStart"
+        },
+        {
+          "text": "Who are my companions?",
+          "nextNode": "companions"
+        },
+        {
+          "text": "Choose your path.",
+          "nextNode": "pathChoice"
         }
       ]
     },
@@ -28,24 +36,119 @@
         {
           "text": "Tell me about info.",
           "nextNode": "worldInfo"
+        },
+        {
+          "text": "What's my quest?",
+          "nextNode": "questStart"
+        },
+        {
+          "text": "Who are my companions?",
+          "nextNode": "companions"
+        },
+        {
+          "text": "Choose your path.",
+          "nextNode": "pathChoice"
         }
       ]
     },
     {
-      "id": "continueExploring",
+      "id": "questStart",
       "texts": [
-        "As you explore, you'll encounter mystical forests, treacherous mountains",
-        "and forgotten temples.",
-        "Be wary of the shadows; they hold secrets and dangers."
+        "Your quest awaits!",
+        "Embark on your adventure and make your mark."
       ],
       "options": [
         {
-          "text": "Ask about quests.",
-          "nextNode": "questStart"
+          "text": "Seek guidance from the stars.",
+          "nextNode": "stargazing"
         },
         {
-          "text": "Ready to begin your adventure?",
-          "nextNode": "questStart"
+          "text": "Forge your own destiny.",
+          "nextNode": "destiny"
+        },
+        {
+          "text": "Venture into the unknown.",
+          "nextNode": "unknownPath"
+        },
+        {
+          "text": "Uncover ancient secrets.",
+          "nextNode": "ancientSecrets"
+        }
+      ]
+    },
+    {
+      "id": "companions",
+      "texts": [
+        "Your companions are a diverse group:",
+        "A wise mage, a rogue with a hidden past,",
+        "and a loyal beast by your side."
+      ],
+      "options": [
+        {
+          "text": "Learn more about the mage.",
+          "nextNode": "mageDetails"
+        },
+        {
+          "text": "Uncover the rogue's secrets.",
+          "nextNode": "rogueSecrets"
+        },
+        {
+          "text": "Bond with your loyal beast.",
+          "nextNode": "beastBonding"
+        },
+        {
+          "text": "Form alliances with other travelers.",
+          "nextNode": "alliances"
+        }
+      ]
+    },
+    {
+      "id": "stargazing",
+      "texts": [
+        "Beneath the celestial canopy, the stars whisper their guidance.",
+        "Their patterns reveal hidden truths and lead you toward destiny."
+      ],
+      "options": [
+        {
+          "text": "Decode the constellations.",
+          "nextNode": "constellationWisdom"
+        },
+        {
+          "text": "Invoke cosmic blessings.",
+          "nextNode": "cosmicBlessings"
+        },
+        {
+          "text": "Consult the astral seer.",
+          "nextNode": "astralSeer"
+        },
+        {
+          "text": "Dance with comet trails.",
+          "nextNode": "cometDance"
+        }
+      ]
+    },
+    {
+      "id": "destiny",
+      "texts": [
+        "The Oracle's prophecy echoes through the land: 'The chosen one shall wield the Blade of Eternity.'",
+        "The path splits—will you follow the constellations or carve your own fate?"
+      ],
+      "options": [
+        {
+          "text": "Seek guidance from the stars.",
+          "nextNode": "stargazing"
+        },
+        {
+          "text": "Forge your own destiny.",
+          "nextNode": "destiny"
+        },
+        {
+          "text": "Venture into the unknown.",
+          "nextNode": "unknownPath"
+        },
+        {
+          "text": "Uncover ancient secrets.",
+          "nextNode": "ancientSecrets"
         }
       ]
     }
