@@ -84,4 +84,14 @@ public class DialogueBrain : MonoBehaviour
         StartCoroutine(RunCoroutines());
         dialogueBox.SetActive(false);
     }
+    public void DialogC(){
+        coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById(currentIntroNode.options[2].nextNode)));
+        StartCoroutine(RunCoroutines());
+        dialogueBox.SetActive(false);
+    }
+    public void DialogD(){
+        coroutines.Enqueue(DisplayLetters(dialogueBase.FindNodeById(currentIntroNode.options[3].nextNode)));
+        StartCoroutine(RunCoroutines());
+        dialogueBox.SetActive(false);
+    }
 }
